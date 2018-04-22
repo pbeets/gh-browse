@@ -12,6 +12,10 @@ const Header = styled.div`
   text-align: center;
 `
 
+const Footer = styled.div`
+  margin-bottom: 100px;
+`
+
 export default () => (
   <div className="container">
     <Header>
@@ -26,5 +30,6 @@ export default () => (
         <CommitList/>
       </div>
     </div>
+    <Footer/>
   </div>
 )

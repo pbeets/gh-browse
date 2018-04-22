@@ -1,5 +1,6 @@
 // Dependencies
 import { connect } from 'react-redux'
+import { debounce } from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
@@ -9,7 +10,20 @@ import { search, setQuery } from '../modules/search/search'
 @connect(state => ({ query: state.query }), { search, setQuery })
 export default class SearchBar extends Component {
   static propTypes = {
-    query: PropTypes.object
+    // State props
+    query: PropTypes.object,
+
+    // Action props
+    search: PropTypes.func,
+    setQuery: PropTypes.func
+  }
+
+  constructor(props) {
+    super(props)
+
+    // Since we are not authenticated, we debounce queries as not to hit
+    // the API limit that quickly.
+    this.search = debounce(props.search, 500, { leading: true })
   }
 
   handleInput = ({ currentTarget: { value } }) => {
@@ -17,19 +31,15 @@ export default class SearchBar extends Component {
 
     query.term = value
     setQuery(query)
-    search(query)
+    this.search(query)
   }
 
-  sortByForks = () => {
-    const { setFilter } = this.props
+  setSortBy = sortBy => {
+    const { query, search, setQuery } = this.props
 
-    setFilter('forks')
-  }
-
-  sortByStars = () => {
-    const { setFilter } = this.props
-
-    setFilter('stars')
+    query.sortBy = sortBy
+    setQuery(query)
+    this.search(query)
   }
 
   render() {
@@ -37,11 +47,16 @@ export default class SearchBar extends Component {
 
     return (
       <div>
-        <input type="text" value={term} onChange={this.handleInput} placeholder="Search organization..."/>
-        <button type="button" onClick={this.sortByStars}>
+        <input
+          onChange={this.handleInput}
+          placeholder="Search organization..."
+          type="text"
+          value={term}
+        />
+        <button type="button" onClick={this.setSortBy.bind(null, 'stars')}>
           Sort by Stars
         </button>
-        <button type="button" onClick={this.sortByForks}>
+        <button type="button" onClick={this.setSortBy.bind(null, 'forks')}>
           Sort by Forks
         </button>
       </div>

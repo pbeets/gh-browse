@@ -1,14 +1,15 @@
 // Dependencies
-import { handle } from 'redux-pack'
 import { debounce } from 'lodash'
+import { handle } from 'redux-pack'
 
 const INITIAL_STATE = {
-  repos: [],
   query: {
     term: '',
     orderBy: 'desc',
     sortBy: 'stars'
-  }
+  },
+  time: 0,
+  repos: []
 }
 
 /**
@@ -21,7 +22,15 @@ export default function reducer(state = INITIAL_STATE, action) {
 
     case 'FETCH_REPOS':
       return handle(state, action, {
-        success: prevState => ({ ...prevState, repos: action.payload ? action.payload.items : [] })
+        success: prevState => {
+          // We need to check to see if the current response is from an older
+          // request, in which case we should discard the results.
+          return action.meta.time > state.time ? {
+            ...prevState,
+            time: action.meta.time,
+            repos: action.payload ? action.payload.items : []
+          } : prevState
+        }
       })
 
     default:
@@ -41,12 +50,6 @@ export function setQuery(query) {
 }
 
 /**
- * Since we are not authenticated, we debounce queries as not to hit
- * the API limit that quickly.
- */
-const debouncedSearch = debounce(search, 500)
-
-/**
  * Executes search with all the query params in the
  * query object.
  * @param {object} query 
@@ -54,6 +57,9 @@ const debouncedSearch = debounce(search, 500)
 export function search(query) {
   return {
     type: 'FETCH_REPOS',
+    meta: {
+      time: Date.now()
+    },
     promise: fetchRepos(query)
   }
 }
@@ -90,7 +96,7 @@ export function fetchRepos({ term, sortBy, orderBy }) {
       }
 
       throw Response.error(res.statusText)
-    })
+    }).then(data => { return data })
   }
 
   return Promise.resolve()

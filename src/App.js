@@ -22,7 +22,6 @@ export default () => (
         <SearchBar/>
         <RepoList/>
       </div>
-
       <div className="six columns">
         <CommitList/>
       </div>

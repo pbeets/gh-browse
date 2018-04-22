@@ -96,7 +96,7 @@ function fetchRepos({ term, sortBy, orderBy }) {
 }
 
 /**
- * Executes fetch on commits of a particular repository.
+ * Actiopn creator to fetch on commits of a particular repository.
  * @param {string} owner
  * @param {string} repo 
  */
@@ -109,7 +109,6 @@ export function loadCommits(owner, repo) {
 
 /**
  * Fetches list of commits by repo.
- * 
  * @param {string} owner
  * @param {string} repo
  */

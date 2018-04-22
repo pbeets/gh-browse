@@ -7,7 +7,7 @@ import styled from 'styled-components'
 // Components
 import CommitListItem from './commit-list-item'
 
-const CommitContainer = styled.div`
+export const CommitContainer = styled.div`
   border-radius: 5px;
   padding: 15px;
   border-top: 10px solid #E87C7B;
@@ -22,8 +22,7 @@ const Title = styled.div`
   margin-bottom: 10px;
 `
 
-@connect((state) => ({ commits: state.commits }))
-export default class CommitList extends Component {
+export class CommitList extends Component {
   static propTypes = {
     commits: PropTypes.array
   }
@@ -39,3 +38,5 @@ export default class CommitList extends Component {
     ) : null
   }
 }
+
+export default connect((state) => ({ commits: state.commits }))(CommitList)

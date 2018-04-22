@@ -22,8 +22,7 @@ const FilterLabel = styled.h6`
   text-transform: uppercase;
 `
 
-@connect(state => ({ query: state.query }), { search, setQuery })
-export default class SearchBar extends Component {
+export class SearchBar extends Component {
   static propTypes = {
     // State props
     query: PropTypes.object,
@@ -94,3 +93,5 @@ export default class SearchBar extends Component {
     )
   }
 }
+
+export default connect(state => ({ query: state.query }), { search, setQuery })(SearchBar)

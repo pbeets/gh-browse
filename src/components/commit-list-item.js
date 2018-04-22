@@ -3,7 +3,7 @@ import moment from 'moment'
 import React from 'react'
 import styled from 'styled-components'
 
-const CommitListItem = styled.div`
+export const CommitContainer = styled.div`
   margin-bottom: 30px;
 `
 
@@ -13,10 +13,10 @@ const HashText = styled.div`
 `
 
 export default ({ commit: { commit, sha } }) => (
-  <CommitListItem>
+  <CommitContainer>
     {commit.message}
     <HashText>
       {commit.author.name} - committed {moment(commit.author.date).fromNow()} - #{sha.substr(0, 6)}
     </HashText>
-  </CommitListItem>
+  </CommitContainer>
 )

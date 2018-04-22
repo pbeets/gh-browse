@@ -9,11 +9,7 @@ import { loadCommits } from '../modules/search/search'
 // Components
 import RepoListItem from './repo-list-item'
 
-@connect(state => ({
-  query: state.query,
-  repos: state.repos
-}), { loadCommits })
-export default class RepoList extends Component {
+export class RepoList extends Component {
   static propTypes = {
     // State props
     query: PropTypes.object,
@@ -56,3 +52,8 @@ export default class RepoList extends Component {
     )
   }
 }
+
+export default connect(state => ({
+  query: state.query,
+  repos: state.repos
+}), { loadCommits })(RepoList)

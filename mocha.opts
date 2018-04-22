@@ -1,0 +1,6 @@
+src/**/*.test.js
+--require should ./src/test/test-helper.js
+-R spec
+--recursive
+--compilers js:babel-register
+-t 10000

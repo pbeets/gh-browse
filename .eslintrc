@@ -1,0 +1,218 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "amd": true,
+    "jquery": true,
+    "es6": true,
+    "mocha": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  },
+  "globals": {
+    "should": true,
+    "ga": true,
+    "heap": true,
+    "chrome": true,
+    "Office": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "rules": {
+    // Possible Errors
+    "no-cond-assign": [
+      "error",
+      "except-parens"
+    ],
+    "no-console": "off",
+    "no-irregular-whitespace": "off", // Turning off for now
+    // Best Practices
+    "dot-notation": "error",
+    "eqeqeq": [
+      "error",
+      "smart"
+    ],
+    "no-fallthrough": [
+      "error",
+      {
+        "commentPattern": "break[\\s\\w]*omitted"
+      }
+    ],
+    "no-multi-spaces": "error",
+    "no-useless-concat": "error",
+    "no-useless-escape": "off",
+    "no-unused-expressions": "error",
+    // Variables
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "varsIgnorePattern": "React"
+      }
+    ],
+    // Stylistic
+    "array-bracket-spacing": [
+      "error",
+      "never"
+    ],
+    "block-spacing": [
+      "error",
+      "always"
+    ],
+    "brace-style": [
+      "error",
+      "1tbs"
+    ],
+    "camelcase": [
+      "error",
+      {
+        "properties": "never"
+      }
+    ],
+    "comma-dangle": [
+      "error",
+      "never"
+    ],
+    "comma-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    "comma-style": "error",
+    "computed-property-spacing": [
+      "error",
+      "never"
+    ],
+    "eol-last": "error",
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "jsx-quotes": [
+      "error",
+      "prefer-double"
+    ],
+    "key-spacing": [
+      "error",
+      {
+        "afterColon": true,
+        "beforeColon": false,
+        "mode": "strict"
+      }
+    ],
+    "keyword-spacing": "error",
+    "func-call-spacing": "error",
+    "mocha/no-exclusive-tests": "error",
+    "no-lonely-if": "error",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "no-trailing-spaces": "error",
+    "no-underscore-dangle": 0,
+    "no-unneeded-ternary": "error",
+    "no-whitespace-before-property": "error",
+    "object-curly-spacing": [
+      "error",
+      "always",
+      {
+        "objectsInObjects": true
+      }
+    ],
+    "operator-assignment": [
+      "error",
+      "always"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "never"
+    ],
+    "space-before-blocks": [
+      "error",
+      "always"
+    ],
+    "space-before-function-paren": [
+      "error",
+      "never"
+    ],
+    "space-in-parens": [
+      "error",
+      "never"
+    ],
+    "space-infix-ops": "error",
+    // ES6
+    "arrow-spacing": [
+      "error",
+      {
+        "before": true,
+        "after": true
+      }
+    ],
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "generator-star-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    "no-const-assign": "error",
+    "no-useless-constructor": "error",
+    "no-var": "error",
+    "object-shorthand": [
+      "error",
+      "always"
+    ],
+    "prefer-template": "error",
+    // JSX rules
+    "react/display-name": "off",
+    "react/jsx-first-prop-new-line": [
+      "error",
+      "multiline"
+    ],
+    "react/jsx-indent": [
+      "error",
+      2
+    ],
+    "react/jsx-no-target-blank": "off",
+    "react/no-deprecated": "off",
+    "react/no-did-mount-set-state": "warn",
+    "react/no-did-update-set-state": "warn",
+    "react/no-find-dom-node": "warn",
+    "react/no-unescaped-entities": "off",
+    "react/no-danger-with-children": "off",
+    "react/prop-types": "off"
+  },
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
+  },
+  "plugins": [
+    "react",
+    "mocha"
+  ]
+}

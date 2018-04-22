@@ -12,7 +12,7 @@ class App extends Component {
         <SearchBar />
         <RepoList />
       </div>
-    );
+    )
   }
 }
 

@@ -4,22 +4,46 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 // Modules
-import { setQuery } from '../modules/search/search'
+import { search, setQuery } from '../modules/search/search'
 
-@connect(null, { setQuery })
+@connect(state => ({ query: state.query }), { search, setQuery })
 export default class SearchBar extends Component {
+  static propTypes = {
+    query: PropTypes.object
+  }
+
   handleInput = ({ currentTarget: { value } }) => {
-    const { setQuery } = this.props
-    console.log('setting query')
-    setQuery(value)
+    const { query, search, setQuery } = this.props
+
+    query.term = value
+    setQuery(query)
+    search(query)
+  }
+
+  sortByForks = () => {
+    const { setFilter } = this.props
+
+    setFilter('forks')
+  }
+
+  sortByStars = () => {
+    const { setFilter } = this.props
+
+    setFilter('stars')
   }
 
   render() {
-    const { query } = this.props
+    const { query: { term } } = this.props
 
     return (
       <div>
-        <input type="text" value={query} onChange={this.handleInput} />
+        <input type="text" value={term} onChange={this.handleInput} placeholder="Search organization..."/>
+        <button type="button" onClick={this.sortByStars}>
+          Sort by Stars
+        </button>
+        <button type="button" onClick={this.sortByForks}>
+          Sort by Forks
+        </button>
       </div>
     )
   }

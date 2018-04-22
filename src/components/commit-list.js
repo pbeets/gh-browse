@@ -12,6 +12,7 @@ export const CommitContainer = styled.div`
   padding: 15px;
   border-top: 10px solid #E87C7B;
   background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
 `
 
 const Title = styled.div`

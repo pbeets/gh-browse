@@ -32,6 +32,7 @@ const IconBar = styled.div`
 const ListItem = styled.div`
   background-color: ${props => props.selected ? '#EFEAFD' : '#fff'};
   border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
   padding: 15px;
   margin-bottom: 5px;
   cursor: pointer;
